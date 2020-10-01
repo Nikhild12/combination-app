@@ -1,24 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { App1SharedModule } from 'projects/app1/src/app/app.module';
+import { View1Component } from './view1/view1.component';
+import { View2Component } from './view2/view2.component';
 import { NavComponent } from './nav/nav.component';
-import { App2SharedModule } from 'projects/app2/src/app/app.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
+    View1Component,
+    View2Component,
     NavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    App1SharedModule.forRoot(),
-    App2SharedModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -27,3 +25,13 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class AppModule { }
+
+export class App1SharedModule{
+  static forRoot(): ModuleWithProviders { 
+    const providers = []
+    return {
+      ngModule: AppModule,
+      providers: providers
+    }
+  }
+}
